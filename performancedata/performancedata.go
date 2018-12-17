@@ -16,6 +16,7 @@ import (
 	r "github.com/BFLB/monitoringplugin/Range"
 )
 
+// FIXME rename to datapoint
 type PerformanceData struct {
 	label string
 	value float64
@@ -34,7 +35,7 @@ func New(label string, value float64, uom string, warn *r.Range, crit *r.Range, 
 	}
 
 	// Validate UOM
-	switch label {
+	switch uom {
 	case "":
 		// Empty, ok
 	case "s", "ms", "us": 	
@@ -100,7 +101,7 @@ func (p *PerformanceData) String() (string) {
 func floatToString(f float64) (string) {
 	i, frac := math.Modf(f)
 	if frac == 0 {
-		return strconv.FormatInt(int64(i), 64)
+		return strconv.FormatInt(int64(i), 10)
 	}
 	return strconv.FormatFloat(f, 'f', -1, 64)
 }

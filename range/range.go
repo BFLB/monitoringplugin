@@ -50,7 +50,7 @@ func (r *Range) Parse(str string) (error) {
 		return errors.New("Invalid input detected: @ at wrong place")
 	}
 
-	// Parse Min
+	// Parse Start
 	i = strings.Index(str, ":")
 	switch i {
 	// No (:) Set. Min = 0
@@ -61,8 +61,8 @@ func (r *Range) Parse(str string) (error) {
 		return errors.New("Invalid input detected: : at wrong place")
 	// (: set)
 	default:
-		startStr := str[0 : i-1]
-		str = str[i+1 : len(str)-1]
+		startStr := str[0 : i]
+		str = str[i+1 : len(str)]
 		// If (~) set to infinite
 		if startStr == "~" {
 			r.start = math.Inf(-1)
@@ -76,7 +76,7 @@ func (r *Range) Parse(str string) (error) {
 		}
 	}
 
-	// Parse Max
+	// Parse End
 	if str == "~" {
 		r.end = math.Inf(1)
 	} else {
@@ -123,8 +123,26 @@ func (r *Range) String() string {
 	return str
 }
 
-func parseNumber(str string) (float64, error) {
 
+// Returns true if value matches the ranche.
+// False otherwise
+func (r *Range) Match(value float64) (match bool) {
+	match = false
+
+	if value >= r.start && value <= r.end {
+		match = true
+		
+	}
+
+	if r.inside == false {
+		return match
+	} else {
+		return !match
+	}
+}
+
+
+func parseNumber(str string) (float64, error) {
 	var err error
 
 	// Float 64

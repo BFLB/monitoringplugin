@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	check := plugin.NewCheck()
+	check := plugin.New()
 	check.Status.Ok()
 	check.Message("It works")
 	fmt.Printf("%s\n", check.String())

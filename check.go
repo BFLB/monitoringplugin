@@ -21,13 +21,21 @@ type Check struct {
 	perfdata []p.PerformanceData
 }
 
-func NewCheck() (Check) {
-	return Check{} 
+func New() (Check) {
+	// TODO properly init
+	return Check{}
 }
 
 // Adds a message line to the result
 func (c *Check) Message(messageLine string) {
 	c.message = append(c.message, messageLine)
+}
+
+// Adds a performance datapoint
+func (c *Check) Perfdata(datapoint *p.PerformanceData) {
+	if datapoint != nil {
+		c.perfdata = append(c.perfdata, *datapoint)
+	}
 }
 
 // String representation of Result
@@ -49,7 +57,7 @@ func (c *Check) String() (string) {
 		s += "|"
 
 		for _, p := range c.perfdata {
-			s += fmt.Sprintf("%s ", p.String) 
+			s += fmt.Sprintf("%s ", p.String()) 
 		}
 		s = strings.TrimRight(s, " ")
 	}
