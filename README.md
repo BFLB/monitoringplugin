@@ -1,10 +1,17 @@
 # monitoringplugin
 Library for building Nagios/Icinga/... style plugins written in go
 
-Work has just started. Not ready to use so far.
+First release.
 
-Once useable, feedback, testing, using and contribution welcome. 
+Supported check methods (activeWriter):
+- Active-Check
 
+Roadmap:
+- Passive-Check writer (commandfile)
+- Icinga-API writer
 
-Stay tuned.
+To get an idea on how it can be used, have a look at activecheck.go in the cmd directory.
 
+Feedback, testing, using and contribution welcome. 
+
+Stay tuned
