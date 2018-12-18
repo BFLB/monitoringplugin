@@ -4,6 +4,8 @@
 //
 // Library for Nagios/Icinga/etc. plugins
 //
+// Basic active-check plugin example
+//
 
 package performancedata
 
@@ -78,13 +80,13 @@ func (p *PerformanceData) String() (string) {
 	//Min
 	min := ""
 	if p.min != nil {
-		min = strconv.FormatInt(int64(*p.min), 64)
+		min = strconv.FormatInt(int64(*p.min), 10)
 	}
 	
 	//Max
 	max := ""
 	if p.max != nil {
-		max = strconv.FormatInt(int64(*p.max), 64)
+		max = strconv.FormatInt(int64(*p.max), 10)
 	}
 
 	// Format output string
@@ -104,4 +106,8 @@ func floatToString(f float64) (string) {
 		return strconv.FormatInt(int64(i), 10)
 	}
 	return strconv.FormatFloat(f, 'f', -1, 64)
+}
+
+func Float64(x int64) *int64 {
+    return &x
 }
