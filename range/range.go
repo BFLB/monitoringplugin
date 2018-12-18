@@ -21,10 +21,10 @@ type Range struct {
 	inside bool
 }
 
-// Returns a Range object
-func New() (Range) {
+// Returns a pointer to a range object
+func New() (*Range) {
 	r := Range{0,0,false}
-	return r
+	return &r
 }
 
 // Parses string value of range
@@ -117,7 +117,7 @@ func (r *Range) String() string {
 	case math.Inf(1):
 		str = str + "~:"
 	default:
-		str = str + floatToString(r.start)
+		str = str + floatToString(r.end)
 	}
 
 	return str
@@ -168,7 +168,7 @@ func parseNumber(str string) (float64, error) {
 func floatToString(f float64) (string) {
 	i, frac := math.Modf(f)
 	if frac == 0 {
-		return strconv.FormatInt(int64(i), 64)
+		return strconv.FormatInt(int64(i), 10)
 	}
 	return strconv.FormatFloat(f, 'f', -1, 64)
 }

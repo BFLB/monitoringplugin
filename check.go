@@ -65,7 +65,7 @@ func (c *Check) String() (string) {
 	// Additional message lines
 	if len(c.message) > 1 {
 		for i := 1; i < len(c.message); i++ {
-			s += fmt.Sprintf("\n%s", c.message[1])
+			s += fmt.Sprintf("\n%s", c.message[i])
 		}
 	}
 

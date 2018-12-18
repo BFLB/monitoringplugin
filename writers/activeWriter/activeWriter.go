@@ -13,12 +13,21 @@ import (
 	check "github.com/BFLB/monitoringplugin"
 )
 
+type Writer struct {}
+
+func New() (*Writer){
+	w := Writer{}
+	return &w
+}
+
 // Write function for active check. Writes output to stdout and
 // exits afterwards
-func Write(check check.Check) {
+func (w *Writer) Write(check check.Check) (error) {
 	// Print result
 	fmt.Printf("%s", check.String())
 
 	// Done. Exit with exitcode
 	os.Exit(check.Status.ReturnCode())
+
+	return nil
 }
