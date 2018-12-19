@@ -15,6 +15,8 @@ import (
 	p"github.com/BFLB/monitoringplugin/performancedata"
 )
 
+const VERSION = "v0.1.1"
+
 type Check struct {
 	Status	s.Status
 	message	[]string
